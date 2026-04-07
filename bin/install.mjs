@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { existsSync, mkdirSync, cpSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, cpSync, readdirSync, statSync, unlinkSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -32,6 +32,7 @@ function printHelp() {
     npx harness-for-yall [options] [plugins...]
 
   Options:
+    --uninstall     Remove installed files
     --force, -f     Overwrite existing files
     --dry-run       Preview without copying
     --help, -h      Show this help
@@ -55,6 +56,7 @@ async function main() {
   const args = process.argv.slice(2);
   const force = args.includes('--force') || args.includes('-f');
   const dryRun = args.includes('--dry-run');
+  const uninstall = args.includes('--uninstall');
   const help = args.includes('--help') || args.includes('-h');
 
   if (help) {
@@ -62,7 +64,7 @@ async function main() {
     process.exit(0);
   }
 
-  const flags = ['--force', '-f', '--dry-run', '--help', '-h'];
+  const flags = ['--force', '-f', '--dry-run', '--uninstall', '--help', '-h'];
   const requestedPlugins = args.filter((a) => !flags.includes(a));
 
   const allPlugins = readdirSync(PLUGINS_DIR, { withFileTypes: true })
@@ -85,10 +87,54 @@ async function main() {
     process.exit(1);
   }
 
-  console.log('\n  harness-for-yall installer\n');
+  const mode = uninstall ? 'uninstall' : dryRun ? 'dry-run' : force ? 'force' : 'safe (skip existing)';
+  console.log(`\n  harness-for-yall ${uninstall ? 'uninstaller' : 'installer'}\n`);
   console.log(`  Target: ${CLAUDE_HOME}`);
   console.log(`  Plugins: ${plugins.join(', ')}`);
-  console.log(`  Mode: ${dryRun ? 'dry-run' : force ? 'force' : 'safe (skip existing)'}\n`);
+  console.log(`  Mode: ${mode}\n`);
+
+  if (uninstall) {
+    let removed = 0;
+    for (const plugin of plugins) {
+      const pluginDir = join(PLUGINS_DIR, plugin);
+      const agentsDir = join(pluginDir, 'agents');
+      if (existsSync(agentsDir)) {
+        for (const f of readdirSync(agentsDir)) {
+          const dest = join(CLAUDE_HOME, 'agents', f);
+          if (existsSync(dest)) {
+            if (!dryRun) unlinkSync(dest);
+            console.log(`  remove: agents/${f}`);
+            removed++;
+          }
+        }
+      }
+      const skillsDir = join(pluginDir, 'skills');
+      if (existsSync(skillsDir)) {
+        for (const d of readdirSync(skillsDir, { withFileTypes: true })) {
+          if (!d.isDirectory()) continue;
+          const dest = join(CLAUDE_HOME, 'skills', `${d.name}.md`);
+          if (existsSync(dest)) {
+            if (!dryRun) unlinkSync(dest);
+            console.log(`  remove: skills/${d.name}.md`);
+            removed++;
+          }
+        }
+      }
+      const rootMds = readdirSync(pluginDir).filter(
+        (f) => f.endsWith('.md') && statSync(join(pluginDir, f)).isFile()
+      );
+      for (const md of rootMds) {
+        const dest = join(CLAUDE_HOME, 'harnesses', md);
+        if (existsSync(dest)) {
+          if (!dryRun) unlinkSync(dest);
+          console.log(`  remove: harnesses/${md}`);
+          removed++;
+        }
+      }
+    }
+    console.log(`\n  Done! Removed: ${removed}\n`);
+    process.exit(0);
+  }
 
   const operations = [];
 

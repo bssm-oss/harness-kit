@@ -1,6 +1,6 @@
 {
   "name": "harness-for-yall",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Multi-agent harness for Claude Code: dev pipeline, code review, frontend/backend experts, codebase exploration",
   "type": "module",
   "bin": {
