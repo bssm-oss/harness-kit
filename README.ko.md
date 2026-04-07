@@ -24,16 +24,16 @@ Claude Code 에이전트를 5개 전문 팀으로 조직한 사전 설정 패키
 
 ```bash
 # 전체 설치
-npx claude-code-harness
+npx @justn-hyeok/claude-code-harness
 
 # 원하는 팀만 골라서
-npx claude-code-harness fe-experts be-experts
+npx @justn-hyeok/claude-code-harness fe-experts be-experts
 
 # 미리보기
-npx claude-code-harness --dry-run
+npx @justn-hyeok/claude-code-harness --dry-run
 
 # 기존 파일 덮어쓰기
-npx claude-code-harness --force
+npx @justn-hyeok/claude-code-harness --force
 ```
 
 `~/.claude/`에 에이전트/스킬 파일을 복사한다. 의존성 없음.

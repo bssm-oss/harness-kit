@@ -24,16 +24,16 @@ A pre-configured set of Claude Code agents organized into 5 specialized teams. E
 
 ```bash
 # All plugins
-npx claude-code-harness
+npx @justn-hyeok/claude-code-harness
 
 # Pick specific teams
-npx claude-code-harness fe-experts be-experts
+npx @justn-hyeok/claude-code-harness fe-experts be-experts
 
 # Preview first
-npx claude-code-harness --dry-run
+npx @justn-hyeok/claude-code-harness --dry-run
 
 # Overwrite existing
-npx claude-code-harness --force
+npx @justn-hyeok/claude-code-harness --force
 ```
 
 Copies agents/skills to `~/.claude/`. Zero dependencies.
