@@ -1,6 +1,6 @@
 # harness-for-yall
 
-Multi-agent harness for [Claude Code](https://docs.anthropic.com/en/docs/claude-code): 25 agents, 15 skills, 5 teams.
+Multi-agent harness for [Claude Code](https://docs.anthropic.com/en/docs/claude-code): 26 agents, 15 skills, 5 teams.
 
 > **[한국어 문서](./README.ko.md)**
 
@@ -15,7 +15,7 @@ A pre-configured set of Claude Code agents organized into 5 specialized teams. E
 | `dev-pipeline` | Pipeline | 5 | 1 | Full feature dev: planner → FE+BE parallel → reviewer gate → QA |
 | `review-pipeline` | Fan-out / Fan-in | 5 | 1 | Code review: 3 parallel screeners → moderator → judge (SARIF output) |
 | `fe-experts` | Expert Pool | 5 | 5 | Frontend: architect → implementer / styler → perf + tester |
-| `be-experts` | Pipeline + Expert Pool | 6 | 5 | Backend: architect → impl + validator → resilience / provider → tester |
+| `be-experts` | Pipeline + Expert Pool | 7 | 5 | Backend: architect → impl + validator → resilience / provider / security → tester |
 | `explore-team` | Hierarchical Delegation | 4 | 3 | Codebase exploration: scout(opus) → hypothesizer → evidence → synthesizer |
 
 ## Install
@@ -114,8 +114,8 @@ plugins/
   fe-experts/             # 5 agents, 5 skills
     agents/               # fe-architect, fe-implementer, fe-styler, fe-perf, fe-tester
     skills/               # fe-component, fe-page, fe-refactor, fe-review, fe-test
-  be-experts/             # 6 agents, 5 skills
-    agents/               # be-architect, be-implementer, be-validator, be-resilience, be-provider, be-tester
+  be-experts/             # 7 agents, 5 skills
+    agents/               # be-architect, be-implementer, be-validator, be-resilience, be-provider, be-security, be-tester
     skills/               # be-api, be-mcp-server, be-pipeline, be-llm-integration, be-observability
   explore-team/           # 4 agents, 3 skills
     agents/               # explore-scout, explore-hypothesizer, explore-evidence, explore-synthesizer

@@ -90,6 +90,7 @@ From `explore-scout`:
 ```
 
 ## Rules
+- **READ-ONLY**: Do NOT modify any files. Synthesis produces a report only — the report itself may be written to `.claude/specs/explore-{slug}.md`, but no source files are touched.
 - Lead with the answer — don't bury the lede
 - Every factual claim must cite a file:line source
 - Clearly separate confirmed facts from inferences

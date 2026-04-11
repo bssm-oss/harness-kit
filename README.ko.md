@@ -1,6 +1,6 @@
 # harness-for-yall
 
-[Claude Code](https://docs.anthropic.com/en/docs/claude-code)용 멀티에이전트 하네스: 에이전트 25개, 스킬 15개, 5개 팀.
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code)용 멀티에이전트 하네스: 에이전트 26개, 스킬 15개, 5개 팀.
 
 > **[English](./README.md)**
 
@@ -15,7 +15,7 @@ Claude Code 에이전트를 5개 전문 팀으로 조직한 사전 설정 패키
 | `dev-pipeline` | Pipeline | 5 | 1 | 기능 개발 전체: 기획 → FE+BE 병렬 → 리뷰 게이트 → QA |
 | `review-pipeline` | Fan-out / Fan-in | 5 | 1 | 코드 리뷰: 3개 스크리너 병렬 → 모더레이터 → 판정 (SARIF 출력) |
 | `fe-experts` | Expert Pool | 5 | 5 | 프론트엔드: 아키텍트 → 구현/스타일 → 성능 + 테스트 |
-| `be-experts` | Pipeline + Expert Pool | 6 | 5 | 백엔드: 아키텍트 → 구현+검증 → 회복성/프로바이더 → 테스트 |
+| `be-experts` | Pipeline + Expert Pool | 7 | 5 | 백엔드: 아키텍트 → 구현+검증 → 회복성/프로바이더/보안 → 테스트 |
 | `explore-team` | Hierarchical Delegation | 4 | 3 | 코드베이스 탐색: 스카우트(opus) → 가설 → 증거 → 종합 |
 
 ## 설치
@@ -143,6 +143,7 @@ chmod +x install.sh && ./install.sh
            ├→ be-implementer + be-validator (병렬)
            ├→ be-resilience (회로 차단기/재시도)
            ├→ be-provider (LLM 멀티프로바이더)
+           ├→ be-security (AuthN/Z, 시크릿, CORS, 감사로그, OWASP)
            └→ be-tester (계약 테스트)
 ```
 

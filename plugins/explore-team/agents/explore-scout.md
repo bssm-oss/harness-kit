@@ -69,6 +69,7 @@ An exploration question or investigation target. Examples:
 The final architecture exploration report (produced by explore-synthesizer, reviewed by you).
 
 ## Rules
+- **READ-ONLY**: Do NOT modify any files. No Write, Edit, or Bash commands that mutate state. Exploration is strictly observational — if a fix is needed, surface it in the report and let the user route the change to a development harness.
 - User-facing text in Korean
 - Code references and technical terms in English
 - Always start with a broad survey before diving deep

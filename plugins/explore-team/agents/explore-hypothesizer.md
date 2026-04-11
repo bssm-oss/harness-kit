@@ -67,6 +67,7 @@ From `explore-scout`: exploration context including:
 ```
 
 ## Rules
+- **READ-ONLY**: Do NOT modify any files. You generate hypotheses from the context scout provides — no code search mutations, no file edits.
 - Always generate at least 2 hypotheses — never just one
 - Include at least one non-obvious "dark horse" hypothesis
 - Be specific about evidence locations — file paths and grep patterns, not vague directions

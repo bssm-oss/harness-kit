@@ -11,6 +11,7 @@ Node.js backend development harness for Hono/Express with multi-agent LLM orches
 | be-validator | sonnet | Zod schemas, OpenAPI generation, RFC 9457 error responses, input sanitization |
 | be-resilience | sonnet | Circuit breakers, retries, timeouts, graceful degradation, health checks |
 | be-provider | sonnet | Multi-provider LLM adapters, streaming, token/cost tracking, rate limiting |
+| be-security | sonnet | AuthN/AuthZ, secret management, CORS, audit logging, OWASP Top 10 defense |
 | be-tester | sonnet | Vitest + Supertest contract tests, provider mocking, fixture management |
 
 ## Pattern: Pipeline with Expert Pool Fallback
@@ -22,6 +23,7 @@ User Request
             ├─▶ be-validator    ─┘
             ├─▶ be-resilience (if external APIs involved)
             ├─▶ be-provider (if LLM integration involved)
+            ├─▶ be-security (if auth/data/privileged routes involved)
             └─▶ be-tester (every change)
 ```
 
@@ -31,7 +33,8 @@ User Request
 2. **be-implementer + be-validator** work in parallel (implementation + schema/validation)
 3. **be-resilience** adds circuit breakers/retries if external calls exist
 4. **be-provider** adds LLM adapter layer if LLM integration is needed
-5. **be-tester** writes contract tests for every change (mandatory gate)
+5. **be-security** enforces auth/authz, secret handling, CORS, and audit logging for any route touching user data or privileged operations
+6. **be-tester** writes contract tests for every change (mandatory gate)
 
 ## Skills
 

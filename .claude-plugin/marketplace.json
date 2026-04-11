@@ -5,47 +5,47 @@
   },
   "metadata": {
     "description": "Multi-agent harness: dev pipeline, code review, frontend experts, backend experts, codebase exploration",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "dev-pipeline",
       "source": "./plugins/dev-pipeline",
-      "description": "Full feature development pipeline: planner -> FE+BE parallel -> reviewer -> QA",
-      "version": "1.0.0",
+      "description": "Full feature development pipeline: planner -> FE+BE parallel -> reviewer -> QA, with spec handoff and concurrent-write rules",
+      "version": "1.1.0",
       "keywords": ["dev", "pipeline", "feature", "planner"],
       "category": "development"
     },
     {
       "name": "review-pipeline",
       "source": "./plugins/review-pipeline",
-      "description": "Multi-stage code review: 3 parallel screeners -> moderator -> judge with SARIF output",
-      "version": "1.0.0",
+      "description": "Multi-stage code review: 3 parallel screeners (correctness/security/perf) -> moderator -> judge with SARIF output",
+      "version": "1.1.0",
       "keywords": ["review", "audit", "sarif", "security"],
       "category": "quality"
     },
     {
       "name": "fe-experts",
       "source": "./plugins/fe-experts",
-      "description": "Frontend expert pool: architect, implementer, styler, perf, tester for React/Next.js",
-      "version": "1.0.0",
+      "description": "Frontend expert pool: architect, implementer, styler, perf, tester for React 19 / Next.js 15 / Jotai / Tailwind",
+      "version": "1.1.0",
       "keywords": ["frontend", "react", "nextjs", "component"],
       "category": "frontend"
     },
     {
       "name": "be-experts",
       "source": "./plugins/be-experts",
-      "description": "Backend expert pool: architect, implementer, validator, resilience, provider, tester for Hono/Express",
-      "version": "1.0.0",
-      "keywords": ["backend", "api", "hono", "express", "llm"],
+      "description": "Backend expert pool: architect, implementer, validator, resilience, provider, security, tester for Hono/Express",
+      "version": "1.1.0",
+      "keywords": ["backend", "api", "hono", "express", "llm", "security"],
       "category": "backend"
     },
     {
       "name": "explore-team",
       "source": "./plugins/explore-team",
-      "description": "Hierarchical codebase exploration: scout(opus) -> hypothesizer -> evidence -> synthesizer",
-      "version": "1.0.0",
+      "description": "Hierarchical codebase exploration: scout(opus) -> hypothesizer -> evidence -> synthesizer, strictly read-only",
+      "version": "1.1.0",
       "keywords": ["explore", "investigate", "architecture", "analysis"],
       "category": "analysis"
     }
