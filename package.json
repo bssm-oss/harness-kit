@@ -1,6 +1,6 @@
 {
   "name": "claude-harness-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Community harness kit for Claude Code — multi-agent orchestration with 7 patterns, 8 teams, built-in operations tooling",
   "type": "module",
   "bin": {

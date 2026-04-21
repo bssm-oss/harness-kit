@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.1] - 2026-04-22
+
+### Fixed
+- `scripts/install.sh` / `uninstall.sh`: replace `((n++))` with `n=$((n+1))` — safe under `set -e`
+- `scripts/install.sh`: add hooks copy block; exclude `AGENTS.md` from harnesses
+- `scripts/uninstall.sh`: add hooks remove block; exclude `AGENTS.md` from harnesses
+- `bin/install.mjs`: uninstall now excludes `AGENTS.md` from harnesses, filters hooks to `.sh` + `isFile()`
+- `bin/install.mjs`: dry-run now accurately reports copy vs skip counts
+- CI: remove stale `master` branch trigger; bump Node matrix to `[20, 22]`
+- Release: add `if: success()` guard before GitHub Release step
+
 ## [0.1.0] - 2026-04-22
 
 ### Initial stable release

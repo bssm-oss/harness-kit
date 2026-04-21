@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Community harness kit for Claude Code — multi-agent orchestration with 7 patterns, 8 teams, built-in operations tooling",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "dev-team",
       "source": "./plugins/dev-team",
       "description": "Full feature development pipeline: planner -> FE+BE parallel -> reviewer -> QA",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["dev", "pipeline", "feature", "planner"],
       "category": "development"
     },
@@ -21,7 +21,7 @@
       "name": "review-team",
       "source": "./plugins/review-team",
       "description": "Multi-stage code review: 3 parallel screeners (correctness/security/perf) -> moderator -> judge with SARIF output",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["review", "audit", "sarif", "security"],
       "category": "quality"
     },
@@ -29,7 +29,7 @@
       "name": "fe-team",
       "source": "./plugins/fe-team",
       "description": "Frontend expert pool + Reflection: architect, implementer, reflector, styler, perf, tester for React/Next.js",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["frontend", "react", "nextjs", "component", "reflection"],
       "category": "frontend"
     },
@@ -37,7 +37,7 @@
       "name": "be-team",
       "source": "./plugins/be-team",
       "description": "Backend expert pool + Reflection: architect, implementer, reflector, validator, resilience, provider, security, tester for Hono/Express",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["backend", "api", "hono", "express", "llm", "security", "reflection"],
       "category": "backend"
     },
@@ -45,7 +45,7 @@
       "name": "explore-team",
       "source": "./plugins/explore-team",
       "description": "Hierarchical codebase exploration: scout(opus) -> hypothesizer -> evidence -> synthesizer, strictly read-only",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["explore", "investigate", "architecture", "analysis"],
       "category": "analysis"
     },
@@ -53,7 +53,7 @@
       "name": "research-team",
       "source": "./plugins/research-team",
       "description": "Blackboard-pattern research: planner -> crawler -> reader -> synthesizer for long-running web/doc research tasks",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["research", "web", "crawl", "search", "blackboard"],
       "category": "research"
     },
@@ -61,7 +61,7 @@
       "name": "debate-team",
       "source": "./plugins/debate-team",
       "description": "Adversarial debate for contested decisions: advocate-a + advocate-b + devils-advocate -> judge",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["debate", "tradeoff", "decision", "adversarial", "reasoning"],
       "category": "reasoning"
     },
@@ -69,7 +69,7 @@
       "name": "ops-team",
       "source": "./plugins/ops-team",
       "description": "Release pipeline, CI auto-fix watcher, zombie-collector, operational CLAUDE.md rules, and push hooks",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "keywords": ["release", "ci", "ops", "hooks", "zombie", "pipeline"],
       "category": "operations"
     }
