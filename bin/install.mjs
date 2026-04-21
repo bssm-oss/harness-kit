@@ -130,7 +130,7 @@ async function main() {
 
       // harness docs
       const rootMds = readdirSync(pluginDir).filter(
-        (f) => f.endsWith('.md') && statSync(join(pluginDir, f)).isFile()
+        (f) => f.endsWith('.md') && f !== 'AGENTS.md' && statSync(join(pluginDir, f)).isFile()
       );
       for (const md of rootMds) {
         const dest = join(CLAUDE_HOME, 'harnesses', md);
@@ -144,11 +144,12 @@ async function main() {
       // hooks (ops-team only)
       const hooksDir = join(pluginDir, 'hooks');
       if (existsSync(hooksDir)) {
-        for (const f of readdirSync(hooksDir)) {
-          const dest = join(CLAUDE_HOME, 'hooks', f);
+        for (const entry of readdirSync(hooksDir, { withFileTypes: true })) {
+          if (!entry.isFile() || !entry.name.endsWith('.sh')) continue;
+          const dest = join(CLAUDE_HOME, 'hooks', entry.name);
           if (existsSync(dest)) {
             if (!dryRun) unlinkSync(dest);
-            console.log(`  remove: hooks/${f}`);
+            console.log(`  remove: hooks/${entry.name}`);
             removed++;
           }
         }
@@ -218,8 +219,13 @@ async function main() {
   for (const op of operations) {
     const rel = op.dest.replace(CLAUDE_HOME + '/', '');
     if (dryRun) {
-      console.log(`  [dry-run] ${rel}`);
-      copied++;
+      if (existsSync(op.dest)) {
+        console.log(`  [skip] ${rel}`);
+        skipped++;
+      } else {
+        console.log(`  [copy] ${rel}`);
+        copied++;
+      }
       continue;
     }
 
