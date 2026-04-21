@@ -10,13 +10,11 @@ Community harness kit for Claude Code — multi-agent orchestration with 7 patte
 ## Install
 
 ```bash
-# One-shot via npx (no global install)
-npx claude-harness-kit
-
-# Or install globally
 npm install -g claude-harness-kit
 claude-harness-kit
 ```
+
+> **Note:** `npx claude-harness-kit` does not work on npm 10+ due to changed binary resolution. Use global install.
 
 After installation, agents and skills are available in `~/.claude/agents/` and `~/.claude/skills/`.
 
@@ -25,7 +23,7 @@ After installation, agents and skills are available in `~/.claude/agents/` and `
 | Team | Pattern | Agents | Skills | Use when |
 |------|---------|:------:|:------:|----------|
 | `dev-team` | Pipeline | 5 | 1 | Building a full feature (FE + BE + review + QA) |
-| `review-team` | Fan-out/Fan-in | 5 | 1 | Auditing existing code or a PR |
+| `review-team` | Fan-out/Fan-in | 6 | 2 | Auditing existing code, a PR, or full codebase |
 | `fe-team` | Expert Pool + Reflection | 6 | 5 | React, Next.js, Tailwind, a11y, perf |
 | `be-team` | Pipeline + Expert Pool + Reflection | 8 | 5 | Hono/Express API, LLM integration, MCP |
 | `explore-team` | Hierarchical Delegation | 4 | 3 | Investigating codebase, root cause, arch review |
@@ -64,6 +62,7 @@ See [`docs/PATTERNS.md`](docs/PATTERNS.md) for full details.
 
 # Review
 /review-code src/auth/middleware.ts
+/review-codebase src/ --screeners 5    # full codebase, 5 parallel screeners
 
 # Research
 /research-web "Compare Zustand vs Jotai for Next.js 15"
@@ -100,7 +99,7 @@ See [`examples/`](examples/) for 5 real-world walkthroughs:
 ## Uninstall
 
 ```bash
-npx claude-harness-kit --uninstall
+claude-harness-kit --uninstall
 ```
 
 ## Creating custom teams

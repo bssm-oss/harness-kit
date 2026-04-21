@@ -2,3 +2,5 @@ node_modules/
 *.tgz
 .harness/
 *.log
+.DS_Store
+review-report.sarif.json
