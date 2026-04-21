@@ -28,6 +28,10 @@
     "llm",
     "mcp"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bssm-oss/claude-harness-kit"
+  },
   "author": "justn-hyeok",
   "license": "MIT",
   "engines": {
