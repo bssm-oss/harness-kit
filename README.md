@@ -11,12 +11,33 @@ Community harness kit for Claude Code — multi-agent orchestration with 7 patte
 
 ```bash
 npm install -g harnesses
-harnesses
 ```
 
 > **Note:** `npx harnesses` does not work on npm 10+ due to changed binary resolution. Use global install.
 
-After installation, agents and skills are available in `~/.claude/agents/` and `~/.claude/skills/`.
+### Claude Code (default)
+
+```bash
+harnesses                  # install all teams to ~/.claude/
+harnesses --claude         # same, explicit
+harnesses be-team fe-team  # specific teams only
+```
+
+Agents and skills are installed to `~/.claude/agents/` and `~/.claude/commands/`.
+
+### Codex / OpenAI
+
+```bash
+harnesses --codex          # installs codex-harnesses Python package
+```
+
+Requires Python 3.11+ and `uv` (recommended) or `pip3`. After install:
+
+```bash
+codex-harnesses "PostgreSQL vs MongoDB?" --option-a PostgreSQL --option-b MongoDB
+```
+
+Runs an adversarial debate pipeline directly on Codex CLI — advocate-a → advocate-b → devil's advocate → judge. Codex agents can read your codebase files to build evidence-backed arguments.
 
 ## Teams
 
@@ -99,7 +120,8 @@ See [`examples/`](examples/) for 5 real-world walkthroughs:
 ## Uninstall
 
 ```bash
-harnesses --uninstall
+harnesses --uninstall           # Claude Code: remove from ~/.claude/
+uv tool uninstall codex-harnesses  # Codex: remove Python package
 ```
 
 ## Creating custom teams
